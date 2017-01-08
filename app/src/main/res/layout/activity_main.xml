@@ -16,4 +16,14 @@
         android:layout_centerHorizontal="true"
         android:onClick="sendBroadcastMessage"
         android:id="@+id/button" />
+
+    <Button
+        android:text="To Inner Receiver"
+        android:onClick="broadcastToInnerReceiver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:id="@+id/button2" />
 </RelativeLayout>

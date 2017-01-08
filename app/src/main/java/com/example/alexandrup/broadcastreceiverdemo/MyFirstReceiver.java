@@ -9,7 +9,7 @@ import android.widget.Toast;
 /**
  * Created by alexandrup on 1/8/2017.
  */
-
+//creating BroadcastReceiver as stand alone class
 public class MyFirstReceiver extends BroadcastReceiver {
 
     private static final String TAG = MyFirstReceiver.class.getSimpleName();
