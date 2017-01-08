@@ -17,9 +17,6 @@ public class MyFirstReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        String name = intent.getStringExtra("name");
-        int age = intent.getIntExtra("age", 0);
-        Log.i(TAG, "Name: " + name + ", Age: "  + age);
 
         Log.i(TAG, "Hello from 1st Receiver, Thread name: " + Thread.currentThread().getName());
 
