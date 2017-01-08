@@ -21,14 +21,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendBroadcastMessage(View view) {
 
-        Intent intent = new Intent(this, MyFirstReceiver.class);
+        //Intent intent = new Intent(this, MyFirstReceiver.class);
+        Intent intent = new Intent("my.custom.action.name");
         sendBroadcast(intent);
 
     }
 
     public void broadcastToInnerReceiver(View view) {
 
-        Intent intent = new Intent(this, MyThirdReceiverInner.class);
+        //Intent intent = new Intent(this, MyThirdReceiverInner.class);
+        Intent intent = new Intent("my.custom.anotheraction.name");
         sendBroadcast(intent);
 
     }
