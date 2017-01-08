@@ -23,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Intent intent = new Intent(this, MyFirstReceiver.class);
         Intent intent = new Intent("my.custom.action.name");
+
+        intent.putExtra("name", "Alexandru Pereteanu");
+        intent.putExtra("age", 27);
+
         sendBroadcast(intent);
 
     }
@@ -30,8 +34,15 @@ public class MainActivity extends AppCompatActivity {
     public void broadcastToInnerReceiver(View view) {
 
         //Intent intent = new Intent(this, MyThirdReceiverInner.class);
-        //Intent intent = new Intent("my.custom.anotheraction.name");
-        //sendBroadcast(intent);
+        Intent intent = new Intent("my.custom.anotheraction.name");
+
+        Bundle bundle = new Bundle();
+        bundle.putString("name", "Alex Alex");
+        bundle.putInt("age", 22);
+
+
+        intent.putExtras(bundle);
+        sendBroadcast(intent);
 
     }
 
@@ -42,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+
+            String name = intent.getStringExtra("name");
+            int age = intent.getIntExtra("age", 0);
+            Log.i(TAG, "Name: " + name + ", Age: "  + age);
+
             Log.i(TAG, "Hello from 3rd receiver");
             Toast.makeText(context, "Hello from 3rd Receiver", Toast.LENGTH_LONG).show();
         }
