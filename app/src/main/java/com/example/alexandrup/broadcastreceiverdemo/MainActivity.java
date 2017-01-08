@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-
+            //comm
             Log.i(TAG, "Hello from 3rd receiver");
             Toast.makeText(context, "Hello from 3rd Receiver", Toast.LENGTH_LONG).show();
         }
