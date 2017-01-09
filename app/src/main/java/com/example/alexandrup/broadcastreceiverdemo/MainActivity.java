@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent("my.custom.action.name");
 
-        sendBroadcast(intent);
-
+        //sendBroadcast(intent);
+        sendOrderedBroadcast(intent, null);
     }
 
     //creating BroadcastReceiver as inner class
