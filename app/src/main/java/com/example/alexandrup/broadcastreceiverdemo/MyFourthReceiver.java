@@ -7,17 +7,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-/**
- * Created by alexandrup on 1/8/2017.
- */
-//creating BroadcastReceiver as stand alone class
-public class MyFirstReceiver extends BroadcastReceiver {
+import static android.content.ContentValues.TAG;
 
-    private static final String TAG = MyFirstReceiver.class.getSimpleName();
+/**
+ * Created by alexandrup on 1/9/2017.
+ */
+
+public class MyFourthReceiver extends BroadcastReceiver {
+
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
         if (isOrderedBroadcast()) {
             int initCode = getResultCode();
             String initData = getResultData();
@@ -27,15 +27,10 @@ public class MyFirstReceiver extends BroadcastReceiver {
             Log.i(TAG, "Code: " + initCode + ", Data: " + initData + ", Bundle: " + title);
 
 
-            Log.i(TAG, "Hello from 1st Receiver, Thread name: " + Thread.currentThread().getName());
+            Log.i(TAG, "Hello from 4th Receiver");
 
-            Toast.makeText(context, "Hello from 1st Receiver", Toast.LENGTH_LONG).show();
-
-
-            initBundle.putString("title", "LazyDev");
-            setResult(83, "Windows", initBundle);
+            Toast.makeText(context, "Hello from 4th Receiver", Toast.LENGTH_LONG).show();
 
         }
-
     }
 }
