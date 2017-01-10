@@ -8,13 +8,4 @@
 
 
 
-    <Button
-        android:text="Broadcast now"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="sendBroadcastMessage"
-        android:id="@+id/button" />
-
 </RelativeLayout>
