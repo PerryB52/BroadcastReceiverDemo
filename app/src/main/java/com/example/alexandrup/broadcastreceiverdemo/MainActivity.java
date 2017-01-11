@@ -4,71 +4,92 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private MyFirstReceiver myFirstReceiver;
-    private TextView textView;
-    private int ctr = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.i(TAG,  "on Create init");
 
-        textView = (TextView) findViewById(R.id.textView);
-
-
-        myFirstReceiver = new MyFirstReceiver();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    public void methodOne(View view){
+
+        Log.i(TAG,  "Test Method one init");
 
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("android.intent.action.AIRPLANE_MODE");
-        //intentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+        intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
 
-        registerReceiver(myFirstReceiver, intentFilter);
+        //to retrieve stick broadcast we do not need a receiver
+        Intent intent = registerReceiver(null, intentFilter);
+
+        int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+
+        if(status == BatteryManager.BATTERY_STATUS_CHARGING){
+            Toast.makeText(this, "Battery getting charged", Toast.LENGTH_SHORT).show();
+        }
+
+        if(status == BatteryManager.BATTERY_STATUS_DISCHARGING){
+            Toast.makeText(this, "Battery getting Dischaged", Toast.LENGTH_SHORT).show();
+        }
+
+        if(status == BatteryManager.BATTERY_STATUS_FULL){
+            Toast.makeText(this, "Battery Fully Charged", Toast.LENGTH_SHORT).show();
+        }
+
+        Log.i(TAG, status + "");
     }
+
+    public void methodTwo(View view){
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
+
+
+        registerReceiver(batterryStatusReceiver, intentFilter);
+
+    }
+
+
+    private BroadcastReceiver batterryStatusReceiver = new BroadcastReceiver() {
+
+        private static final String TAG = "Main Charger Receiver";
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+
+            int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+
+            if(status == BatteryManager.BATTERY_STATUS_CHARGING){
+                Toast.makeText(context, "Battery getting charged", Toast.LENGTH_SHORT).show();
+            }
+
+            if(status == BatteryManager.BATTERY_STATUS_DISCHARGING){
+                Toast.makeText(context, "Battery getting Dischaged", Toast.LENGTH_SHORT).show();
+            }
+
+            if(status == BatteryManager.BATTERY_STATUS_FULL){
+                Toast.makeText(context, "Battery Fully Charged", Toast.LENGTH_SHORT).show();
+            }
+
+            Log.i(TAG, status + "");
+        }
+    };
 
     @Override
     protected void onPause() {
         super.onPause();
-
-        unregisterReceiver(myFirstReceiver);
+        unregisterReceiver(batterryStatusReceiver);
     }
-
-    public void registerReceiver(View view) {
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(Intent.ACTION_TIME_TICK);
-
-        registerReceiver(timeTickReceiver,intentFilter);
-
-    }
-
-    public void unregisterTimer(View view) {
-
-        unregisterReceiver(timeTickReceiver);
-    }
-
-    private BroadcastReceiver timeTickReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-            int minutes = ctr;
-            textView.setText(minutes + " minute over");
-            ctr++;
-
-            Toast.makeText(context, "Hello from Time Tick Receiver", Toast.LENGTH_SHORT).show();
-        }
-    };
 }

@@ -8,19 +8,18 @@
 
 
     <Button
-        android:text="Register Timer"
+        android:text="Method 1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
         android:layout_marginStart="27dp"
         android:layout_marginTop="162dp"
-        android:onClick="registerReceiver"
+        android:onClick="methodOne"
         android:id="@+id/button" />
 
     <Button
-        android:text="Unregister Timer"
-        android:onClick="unregisterTimer"
+        android:text="Method 2"
+        android:onClick="methodTwo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/button"
@@ -28,13 +27,5 @@
         android:layout_marginEnd="20dp"
         android:id="@+id/button2" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/button"
-        android:layout_marginStart="35dp" />
+
 </RelativeLayout>
